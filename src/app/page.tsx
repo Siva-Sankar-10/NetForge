@@ -1,6 +1,6 @@
 
 import Link from "next/link";
-
+import NetworkDiagram from "@/components/NetworkDiagram";
 const features = [
   {
     number: "01",
@@ -25,208 +25,18 @@ const features = [
   },
 ];
 
-function NetworkDiagram() {
-  return (
-    <div className="network-panel technical-corner min-w-0">
-      <div className="relative z-10 flex items-center justify-between border-b border-white/15 px-4 py-3 sm:px-5">
-        <span className="font-technical text-[9px] tracking-[0.14em] text-[#E7D6C1] sm:text-[10px]">
-          NETWORK TOPOLOGY / 001
-        </span>
-        <span className="flex items-center gap-2 font-technical text-[9px] text-[#E7D6C1]">
-          <span className="status-light" />
-          SIMULATION
-        </span>
-      </div>
+<div className="min-w-0">
+  <NetworkDiagram />
 
-      <div className="relative z-10 px-2 py-3 sm:px-4">
-        <svg
-          viewBox="0 0 440 320"
-          role="img"
-          aria-labelledby="network-title network-description"
-          className="block h-auto w-full"
-        >
-          <title id="network-title">NetForge network topology</title>
-          <desc id="network-description">
-            A router connects to a central switch, which connects to three
-            computers in a simulated local area network.
-          </desc>
-
-          <defs>
-            <pattern
-              id="diagram-grid"
-              width="22"
-              height="22"
-              patternUnits="userSpaceOnUse"
-            >
-              <circle cx="1" cy="1" r="1" fill="#FFF9EF" opacity="0.15" />
-            </pattern>
-          </defs>
-
-          <rect
-            x="0"
-            y="0"
-            width="440"
-            height="320"
-            fill="url(#diagram-grid)"
-          />
-
-          <g className="network-line">
-            <path d="M220 76 V112" />
-            <path d="M220 164 V195 H86 V224" />
-            <path d="M220 195 V224" />
-            <path d="M220 195 H354 V224" />
-          </g>
-
-          <g>
-            <circle className="network-packet" r="3">
-              <animateMotion
-                dur="2.8s"
-                repeatCount="indefinite"
-                path="M220 76 V112"
-              />
-            </circle>
-            <circle className="network-packet" r="3">
-              <animateMotion
-                dur="3.6s"
-                repeatCount="indefinite"
-                path="M220 164 V195 H86 V224"
-              />
-            </circle>
-            <circle className="network-packet" r="3">
-              <animateMotion
-                dur="3.1s"
-                repeatCount="indefinite"
-                path="M220 164 V195 H354 V224"
-              />
-            </circle>
-          </g>
-
-          <g transform="translate(184 26)">
-            <rect
-              width="72"
-              height="50"
-              rx="2"
-              className="network-node"
-            />
-            <path
-              d="M18 16 H54 M18 24 H54 M18 32 H54"
-              stroke="#A95850"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <circle cx="22" cy="41" r="2" fill="#A95850" />
-            <circle cx="32" cy="41" r="2" fill="#A95850" />
-          </g>
-
-          <text
-            x="220"
-            y="17"
-            textAnchor="middle"
-            fill="#E7D6C1"
-            fontSize="9"
-            letterSpacing="1.5"
-          >
-            ROUTER / GW-01
-          </text>
-
-          <g transform="translate(177 112)">
-            <rect
-              width="86"
-              height="52"
-              rx="2"
-              className="network-node"
-            />
-            {Array.from({ length: 6 }, (_, index) => (
-              <g key={index}>
-                <rect
-                  x={13 + index * 10}
-                  y="13"
-                  width="6"
-                  height="10"
-                  fill="#A95850"
-                />
-                <circle
-                  cx={16 + index * 10}
-                  cy="35"
-                  r="2"
-                  fill="#A95850"
-                />
-              </g>
-            ))}
-          </g>
-
-          <text
-            x="220"
-            y="105"
-            textAnchor="middle"
-            fill="#E7D6C1"
-            fontSize="9"
-            letterSpacing="1.5"
-          >
-            SWITCH / SW-01
-          </text>
-
-          {[86, 220, 354].map((x, index) => (
-            <g key={x} transform={`translate(${x - 28} 224)`}>
-              <rect
-                width="56"
-                height="43"
-                rx="2"
-                className="network-node"
-              />
-              <rect
-                x="8"
-                y="7"
-                width="40"
-                height="24"
-                fill="none"
-                stroke="#A95850"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M19 36 H37 M28 31 V36"
-                fill="none"
-                stroke="#A95850"
-                strokeWidth="1.5"
-              />
-              <circle cx="46" cy="35" r="2" fill="#A95850" />
-              <text
-                x="28"
-                y="58"
-                textAnchor="middle"
-                fill="#E7D6C1"
-                fontSize="9"
-                letterSpacing="0.7"
-              >
-                {`PC-0${index + 1}`}
-              </text>
-            </g>
-          ))}
-
-          <text
-            x="220"
-            y="308"
-            textAnchor="middle"
-            fill="#B9AA98"
-            fontSize="9"
-            letterSpacing="1.3"
-          >
-            LOCAL AREA NETWORK / LAN
-          </text>
-        </svg>
-      </div>
-
-      <div className="relative z-10 flex flex-wrap items-center justify-between gap-2 border-t border-white/15 px-4 py-3 sm:px-5">
-        <span className="font-technical text-[9px] text-[#B9AA98]">
-          TOPOLOGY: STAR
-        </span>
-        <span className="font-technical text-[9px] text-[#B9AA98]">
-          PACKET FLOW: DEMO
-        </span>
-      </div>
-    </div>
-  );
-}
+  <div className="mt-3 flex items-start justify-between gap-3">
+    <p className="max-w-xs font-technical text-[9px] leading-5 text-[#756B61]">
+      FIG. 001 — A SIMPLE NETWORK, A THOUSAND THINGS TO UNDERSTAND.
+    </p>
+    <span className="shrink-0 font-technical text-[9px] text-[#756B61]">
+      NF / LAB
+    </span>
+  </div>
+</div>
 
 export default function Home() {
   return (

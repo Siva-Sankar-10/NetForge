@@ -441,3 +441,78 @@ kbd,
     transition-duration: 0.01ms !important;
   }
 }
+/* NetForge animated network topology */
+
+.network-line {
+  fill: none;
+  stroke: #D6B99D;
+  stroke-width: 1.6;
+  stroke-dasharray: 5 5;
+  opacity: 0.75;
+}
+
+.network-packet {
+  fill: #D98978;
+  filter: drop-shadow(0 0 4px #D98978);
+}
+
+.topology-device-body,
+.topology-device-screen {
+  fill: #EEE5D2;
+  stroke: #A95850;
+  stroke-width: 1.8;
+}
+
+.topology-device-detail {
+  fill: none;
+  stroke: #A95850;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.topology-device-port {
+  fill: #A95850;
+}
+
+.topology-device-light {
+  fill: #A95850;
+  animation: topology-light 1.8s ease-in-out infinite;
+}
+
+.topology-device-pulse {
+  fill: none;
+  stroke: #D98978;
+  stroke-width: 1;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: topology-pulse 3s ease-out infinite;
+}
+
+@keyframes topology-pulse {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@keyframes topology-light {
+  0%, 100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topology-device-pulse,
+  .topology-device-light {
+    animation: none;
+  }
+}
